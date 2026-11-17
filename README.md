@@ -6,6 +6,13 @@ Cloudflare Workers 的 Telegram Web/MTProto WebSocket 代理中继（KWS Lanes�
 
 它不再依赖一套独立的 MTProxy / middle proxy 后端：Worker 在本地解开客户端 MTProto 传输层的 obfuscation，再用自己生成的随机密钥重新封一层，拨 Telegram 官方的 Web K 入口。内层 MTProto 载荷始终由客户端端到端加密，Worker 不接触、也不做 mtp 层加解密。
 
+### ⚙️ 部署仅需三步
+
+新建 Worker → 粘贴 telegram_webproxy.js (https://github.com/ToiCF/CF-Workers-TGProxy/blob/main/telegram_webproxy.js) → 绑定 SECRET 与 BOOT 变量后部署上线
+- SECRET: 32位小写字母和数字组成，推荐使用 openssl rand -hex 16 生成，
+- BOOT: 建议 ≥ 16 位的随机字符串，推荐使用 openssl rand -hex 24 生成；
+- 缺任一个 /health 直接返回 500。
+
 ## 核心能力
 
 当前代码主线包含：
