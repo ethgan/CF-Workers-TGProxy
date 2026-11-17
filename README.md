@@ -12,7 +12,7 @@ Cloudflare Workers 的 Telegram Web/MTProto WebSocket 代理中继（KWS Lanes�
 - SECRET: 32位小写字母和数字组成，推荐使用 openssl rand -hex 16 生成，
 - BOOT: 建议 ≥ 16 位的随机字符串，推荐使用 openssl rand -hex 24 生成；
 - 缺任一个 /health 直接返回 500。
-
+- https://t.me/webproxy?server=自定义域名&secret=32位数值
 ## 核心能力
 
 当前代码主线包含：
